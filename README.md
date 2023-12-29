@@ -1,16 +1,12 @@
-# my_test_app
+# Money-and-Fame
 
-A new Flutter project.
+A Flutter project designed to help users effectively manage and monitor budgetary allocations. This application serves as a versatile financial companion, providing users with a user-friendly interface to track and analyze spending habits among housemates, couples, or individuals.
 
 ## Getting Started
+### Prerequisites
+You'll need to install Flutter SDK on your computer before downloading this project.<br>
+Link to Flutter in Github: https://github.com/flutter/flutter<br>
+Link to Flutter's website: https://docs.flutter.dev/
+### Installation
+## Usage
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
