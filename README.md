@@ -10,6 +10,9 @@ Link to Flutter's website: https://docs.flutter.dev/
 ### Installation
 ## Usage
 ### As developer
-The lib/CustomWidgets folder has all the major Widgets in the app. I try to make it easier for you to reuse the code in your app.<br>
-The
+The lib/CustomWidgets folder has all the major Widgets in the app. I try to make it easier for you to reuse the code for your app.<br>
+There are 3 pages (screens) in the app:
+* First page use
+* Second page utilizes a flutter template that I found on the web
+* Third page (summary_page) 
 ### As app user
