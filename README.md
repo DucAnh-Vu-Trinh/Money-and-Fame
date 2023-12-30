@@ -10,4 +10,6 @@ Link to Flutter's website: https://docs.flutter.dev/
 ### Installation
 ## Usage
 ### As developer
+The lib/CustomWidgets folder has all the major Widgets in the app. I try to make it easier for you to reuse the code in your app.<br>
+The
 ### As app user
