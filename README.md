@@ -9,4 +9,5 @@ Link to Flutter in Github: https://github.com/flutter/flutter<br>
 Link to Flutter's website: https://docs.flutter.dev/
 ### Installation
 ## Usage
-
+### As developer
+### As app user
