@@ -4,7 +4,7 @@ import 'package:my_test_app/Pages/second_page.dart';
 import 'package:my_test_app/Welcome/items.dart';
 import 'package:my_test_app/CustomWidgets/light_colors.dart';
 import 'package:my_test_app/Pages/first_page.dart';
-import 'package:my_test_app/handle_excel.dart';
+import 'package:my_test_app/Functions/handle_excel.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -118,11 +118,12 @@ class _WelcomeScreen extends State<WelcomeScreen> {
               var myExcelFile = await pickFile();
               var names = myExcelFile.item1;
               Excel? excelFile = myExcelFile.item2;
+              String? fileName = myExcelFile.item3;
 
               if (excelFile == null) return;
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CreateNewTaskPage(names: names, excel: excelFile)),
+                MaterialPageRoute(builder: (context) => CreateNewTaskPage(names: names, excel: excelFile, fileName: fileName,)),
               );
             },
             child: const Text('Import Old File',
