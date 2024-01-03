@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		vlbeAsfs18EAwUX4cfWsa6BXNQU=
+		TkjfAUcZPDJ2sMrYTq8lE/mFOgE=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		yeNbvAuzgfeU+yc1+uuj0Tzkzp0=
+		QgmJDc+LSvwXp8A0EQW/YkRgnqc=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		xj4qFZmix9NOBSI5dXmx/XRafu0=
+		x4/LKQ9qUokyxLPhwMlUF2d7luY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -106,7 +106,7 @@
 		</data>
 		<key>Frameworks/DKImagePickerController.framework/DKImagePickerController</key>
 		<data>
-		w740jlf7uBEfUACOKndvLahw1YU=
+		FWX/QWLmCnuYIIO38drqMw5oVR4=
 		</data>
 		<key>Frameworks/DKImagePickerController.framework/DKImagePickerController.bundle/Assets.car</key>
 		<data>
@@ -306,7 +306,7 @@
 		</data>
 		<key>Frameworks/DKPhotoGallery.framework/DKPhotoGallery</key>
 		<data>
-		3xsskdaljBARvtI60fGetCkqeNg=
+		Ow+oWkGZvGb2alu7ZzJMikDpNAs=
 		</data>
 		<key>Frameworks/DKPhotoGallery.framework/DKPhotoGallery.bundle/Assets.car</key>
 		<data>
@@ -441,7 +441,7 @@
 		</data>
 		<key>Frameworks/SDWebImage.framework/SDWebImage</key>
 		<data>
-		ErFWx+FPdyj9uaZVnjxQ7oOUdhQ=
+		co6OIPLuFIwTkLE68B5uYL67rgQ=
 		</data>
 		<key>Frameworks/SDWebImage.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -453,7 +453,7 @@
 		</data>
 		<key>Frameworks/SwiftyGif.framework/SwiftyGif</key>
 		<data>
-		/0u7/TFlJ+QVdD/v8OV8I8NWVwI=
+		Jw0V2Ul9DcdEPXwkn2TPjS9dVTA=
 		</data>
 		<key>Frameworks/SwiftyGif.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -469,7 +469,7 @@
 		</data>
 		<key>Frameworks/file_picker.framework/file_picker</key>
 		<data>
-		9ZAXDRslXAE7tGzefrvEY/bldgU=
+		NusV79vbhQQzs3JjnxqP6lq+0u0=
 		</data>
 		<key>Frameworks/open_file.framework/Info.plist</key>
 		<data>
@@ -481,7 +481,7 @@
 		</data>
 		<key>Frameworks/open_file.framework/open_file</key>
 		<data>
-		mU37+WVC51HurSMitagcDnFB6Kk=
+		eSMa/WPa5eMe3xPTX23XyDCoJz4=
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
 		<data>
@@ -493,7 +493,7 @@
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
 		<data>
-		sdP/+LflUUHO2f1Ur+agz13YOwI=
+		wjXP4T52gADmnD9xJe4Pzt5ZiAo=
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
 		<data>
@@ -505,7 +505,7 @@
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
 		<data>
-		4AmVq3ZML3sDqkK+of70KcO+jAA=
+		fgPkb2F0u9DDzvfXCDFTljqrDeU=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -592,7 +592,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7LXTqt6BTykB9gxZUpuKk/XzqZUKqb09RGUACk38VF0=
+			0fM8BVhbWAcC6QGrshHkCpZOGGpR9RqVmAQUKetbtWk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -606,7 +606,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			eXqTd2NtlVOnenCXD+nf8nz2CEoO6HcViJhsZj8KYx4=
+			7tWT1mPXiGvyZQjwrr9mOUwu4JCdeG+pKrfOrK2Qu7w=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -669,7 +669,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			934MUs8NAfYEF+6wxNIeMgjoXvx37T5V7sFuGo1X8wM=
+			F/cw2FQMvmw9SJ0Tv9B2nt91lyeQI459n72ul/WSbZU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -697,7 +697,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			g1Uip3d2KMq3b7WzhEbPsqZew2aUZ1TqmYpypd3Uops=
+			8PHDvS0eo4TyBBR+wRCChKz2ByOPDKwaNHzHSxodL1I=
 			</data>
 		</dict>
 		<key>Frameworks/DKImagePickerController.framework/DKImagePickerController.bundle/Assets.car</key>
@@ -912,7 +912,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			g1jSrzvxkUV5xqgypkgmdqx5qTrarmli3tT0WZiivk4=
+			J888lvOKbfTKxiix5FQbuB5lsdeNgUFXtVdScR7qqTo=
 			</data>
 		</dict>
 		<key>Frameworks/DKPhotoGallery.framework/DKPhotoGallery.bundle/Assets.car</key>
@@ -1128,7 +1128,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ReCwDX7rkKqx9cKfabKgMau8IKwv9mMwUI7JYk/22v4=
+			gbHhCagKBtQBjv+JN/BT5xmjRhZSGH8pSPZvNyYgl4M=
 			</data>
 		</dict>
 		<key>Frameworks/SDWebImage.framework/_CodeSignature/CodeResources</key>
@@ -1149,7 +1149,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GzpFtHu15XerDe8bpiPRxvwdA/GqRWaa1P8uILuvmhc=
+			bYKdfYQ9km+YMt0xfrXCzv+sg51fUYV1pii+XB5CrA4=
 			</data>
 		</dict>
 		<key>Frameworks/SwiftyGif.framework/_CodeSignature/CodeResources</key>
@@ -1177,7 +1177,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8z97gTgPeGMbKMOliJTVXXqcAweID0tXqZEvZzAKGCY=
+			wuMwSz7844fcET+FgRxkHjVCV8DAsOsj2iVHVaW/awQ=
 			</data>
 		</dict>
 		<key>Frameworks/open_file.framework/Info.plist</key>
@@ -1198,7 +1198,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			BK/+XhhM4A46H3esjvEZ0TYxvnAD86lJzF4DL7iQOyY=
+			Z1bRDnE0OTq+lXJCZCQn1akNEL5lW+BO8QQIfR17vvs=
 			</data>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
@@ -1219,7 +1219,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AzFZslrcA/eoFj+l29/ICU6Rfhl5W0BWR08JcYN+zxg=
+			v/yq6HtpQbFAT4Gne+O1G73JVGDPKcnzcn5sPGZVJl4=
 			</data>
 		</dict>
 		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
@@ -1240,7 +1240,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			KZzinYmRjOt5ExYPe5LuOwikLYBIo5hsq09gOc3WrLk=
+			VxX6a+E+LLqp7223wCu8bY1kTkC/ULSCMxkqvt174dk=
 			</data>
 		</dict>
 	</dict>

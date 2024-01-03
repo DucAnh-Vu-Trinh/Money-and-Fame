@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:excel/excel.dart';
 import 'package:my_test_app/Functions/handle_excel.dart';
+import 'package:my_test_app/Functions/round_double.dart';
 
 Map<String, List<String>> summary (Excel excel, List listName, String table) {
   List<List<CellValue>> twoDList = decodeExcelObject(excel);
@@ -19,12 +20,12 @@ Map<String, List<String>> summary (Excel excel, List listName, String table) {
     if (value > 0){
       var owner = listName[int.parse(key[1]) - 1];
       var payer = listName[int.parse(key[0]) - 1];
-      payMoney.add('$payer has to pay $owner $value');
+      payMoney.add('$payer has to pay $owner ${roundOffToXDecimal (value)}');
     }
     else if (value < 0){
       var payer = listName[int.parse(key[1]) - 1];
       var owner = listName[int.parse(key[0]) - 1];
-      payMoney.add('$payer has to pay $owner ${value.abs()}');
+      payMoney.add('$payer has to pay $owner ${roundOffToXDecimal (value.abs())}');
     }
     else{
       return;
@@ -34,20 +35,20 @@ Map<String, List<String>> summary (Excel excel, List listName, String table) {
   // Calculate who spends/ saves how much money
   var (saveMoneyList, spendMoneyList) = spendMoneySum(twoDList, totalPpl, maxRow);
   saveMoneyList.asMap().forEach( (index, money){
-    saveMoney.add('${listName[index]} earn $money');
+    saveMoney.add('${listName[index]} earn ${roundOffToXDecimal (money)}');
   });
   spendMoneyList.asMap().forEach( (index, money){
-    spendMoney.add('${listName[index]} spend ${money.abs()}');
+    spendMoney.add('${listName[index]} spend ${roundOffToXDecimal (money.abs())}');
   });
 
   // Calculate total cash flow
   listName.asMap().forEach( (index, name){
     var total = saveMoneyList[index] + spendMoneyList[index];
     if (total < 0){
-      totalMoney.add('${listName[index]} loses ${total.abs()}');
+      totalMoney.add('${listName[index]} loses ${roundOffToXDecimal (total.abs())}');
     }
     else if (total > 0){
-      totalMoney.add('${listName[index]} earns $total');
+      totalMoney.add('${listName[index]} earns ${roundOffToXDecimal (total)}');
     }
   });
 

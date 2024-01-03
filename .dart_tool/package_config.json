@@ -164,6 +164,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "nested",
+      "rootUri": "file:///Users/linhtran238/.pub-cache/hosted/pub.dev/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "open_file",
       "rootUri": "file:///Users/linhtran238/.pub-cache/hosted/pub.dev/open_file-3.3.2",
       "packageUri": "lib/",
@@ -234,6 +240,12 @@
       "rootUri": "file:///Users/linhtran238/.pub-cache/hosted/pub.dev/pointycastle-3.7.3",
       "packageUri": "lib/",
       "languageVersion": "2.14"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///Users/linhtran238/.pub-cache/hosted/pub.dev/provider-6.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "shared_objects",
@@ -374,7 +386,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-27T00:11:17.636870Z",
+  "generated": "2024-01-03T03:58:50.217281Z",
   "generator": "pub",
   "generatorVersion": "3.1.5"
 }

@@ -1,10 +1,13 @@
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:my_test_app/Pages/second_page.dart';
 import 'package:my_test_app/Welcome/items.dart';
 import 'package:my_test_app/CustomWidgets/light_colors.dart';
 import 'package:my_test_app/Pages/first_page.dart';
 import 'package:my_test_app/Functions/handle_excel.dart';
+import 'package:my_test_app/Functions/Preferences/model_theme.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -72,8 +75,8 @@ class _WelcomeScreen extends State<WelcomeScreen> {
       width: 10.0,
       decoration: BoxDecoration(
           color: currentPage.round() == index
-              ? const Color(0XFF256075)
-              : const Color(0XFF256075).withOpacity(0.2),
+            ? const Color(0XFF256075)
+            : const Color(0XFF256075).withOpacity(0.2),
           borderRadius: BorderRadius.circular(10.0)),
       )
     );
@@ -93,79 +96,96 @@ class _WelcomeScreen extends State<WelcomeScreen> {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
-              );
-            },
-            child: const Text('Create New',
-              style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: LightColors.kPurpleBlue,
+    return Consumer<ModelTheme>(
+      builder: (context, ModelTheme themeNotifier, child) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white70,
+            actions: [
+              IconButton(
+                icon: Icon(themeNotifier.isDark
+                  ? Icons.nightlight_round
+                  : Icons.wb_sunny),
+                onPressed: () {themeNotifier.isDark
+                  ? themeNotifier.isDark = false
+                  : themeNotifier.isDark = true;
+                }
+              )
+            ]),
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyHomePage()),
+                  );
+                },
+                child: const Text('Create New',
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: LightColors.kPurpleBlue,
+                  ),
+                ),
               ),
-            ),
-          ),
-          const SizedBox(height: 10,),
-          InkWell(
-            onTap: () async {
-              var myExcelFile = await pickFile();
-              var names = myExcelFile.item1;
-              Excel? excelFile = myExcelFile.item2;
-              String? fileName = myExcelFile.item3;
+              const SizedBox(height: 10,),
+              InkWell(
+                onTap: () async {
+                  var myExcelFile = await pickFile();
+                  var names = myExcelFile.item1;
+                  Excel? excelFile = myExcelFile.item2;
+                  String? fileName = myExcelFile.item3;
 
-              if (excelFile == null) return;
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CreateNewTaskPage(names: names, excel: excelFile, fileName: fileName,)),
-              );
-            },
-            child: const Text('Import Old File',
-              style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: LightColors.kPurpleBlue,
+                  if (excelFile == null) return;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CreateNewTaskPage(names: names, excel: excelFile, fileName: fileName,)),
+                  );
+                },
+                child: const Text('Import Old File',
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: LightColors.kPurpleBlue,
+                  ),
+                ),
               ),
+              const SizedBox(height: 5),
+            ],
+          ),
+          body: Container(
+            child: Stack(
+              children: <Widget>[
+                PageView.builder(
+                  controller: _pageViewController,
+                  itemCount: slides.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return slides[index];
+                  },
+                ),
+                Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 70.0),
+                      padding: const EdgeInsets.symmetric(vertical: 40.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: indicator(),
+                          ),
+                        ]
+                      )
+                    )
+                  ),
+              ],
             ),
           ),
-          const SizedBox(height: 5),
-        ],
-      ),
-      body: Container(
-        child: Stack(
-          children: <Widget>[
-            PageView.builder(
-              controller: _pageViewController,
-              itemCount: slides.length,
-              itemBuilder: (BuildContext context, int index) {
-                return slides[index];
-              },
-            ),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  margin: const EdgeInsets.only(top: 70.0),
-                  padding: const EdgeInsets.symmetric(vertical: 40.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: indicator(),
-                      ),
-                    ]
-                  )
-                )
-              ),
-          ],
-        ),
-      ),
+        );
+      }
     );
   }
 }

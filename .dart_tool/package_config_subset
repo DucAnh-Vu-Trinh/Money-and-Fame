@@ -94,6 +94,10 @@ multi_value_listenable_builder
 2.12
 file:///Users/linhtran238/.pub-cache/hosted/pub.dev/multi_value_listenable_builder-0.0.2/
 file:///Users/linhtran238/.pub-cache/hosted/pub.dev/multi_value_listenable_builder-0.0.2/lib/
+nested
+2.12
+file:///Users/linhtran238/.pub-cache/hosted/pub.dev/nested-1.0.0/
+file:///Users/linhtran238/.pub-cache/hosted/pub.dev/nested-1.0.0/lib/
 open_file
 2.17
 file:///Users/linhtran238/.pub-cache/hosted/pub.dev/open_file-3.3.2/
@@ -142,6 +146,10 @@ pointycastle
 2.14
 file:///Users/linhtran238/.pub-cache/hosted/pub.dev/pointycastle-3.7.3/
 file:///Users/linhtran238/.pub-cache/hosted/pub.dev/pointycastle-3.7.3/lib/
+provider
+2.12
+file:///Users/linhtran238/.pub-cache/hosted/pub.dev/provider-6.1.1/
+file:///Users/linhtran238/.pub-cache/hosted/pub.dev/provider-6.1.1/lib/
 shared_objects
 2.17
 file:///Users/linhtran238/.pub-cache/hosted/pub.dev/shared_objects-1.0.1/
@@ -228,8 +236,8 @@ file:///Users/linhtran238/.pub-cache/hosted/pub.dev/xml-6.3.0/
 file:///Users/linhtran238/.pub-cache/hosted/pub.dev/xml-6.3.0/lib/
 my_test_app
 3.1
-file:///Users/linhtran238/Desktop/Project/Flutter/my_test_app/
-file:///Users/linhtran238/Desktop/Project/Flutter/my_test_app/lib/
+file:///Users/linhtran238/Desktop/Project/Flutter/Money-and-Fame/
+file:///Users/linhtran238/Desktop/Project/Flutter/Money-and-Fame/lib/
 sky_engine
 3.0
 file:///Users/linhtran238/Desktop/Software/flutter/bin/cache/pkg/sky_engine/
