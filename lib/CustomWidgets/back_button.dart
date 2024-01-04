@@ -3,12 +3,13 @@ import 'package:my_test_app/CustomWidgets/light_colors.dart';
 
 
 class MyBackButton extends StatelessWidget {
-  const MyBackButton({super.key});
+  final String heroTag;
+  const MyBackButton({super.key, required this.heroTag});
 
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: 'backButton',
+      tag: heroTag,
         child: GestureDetector(
         onTap: (){
           Navigator.pop(context);

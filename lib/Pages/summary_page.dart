@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_test_app/CustomWidgets/light_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:multi_value_listenable_builder/multi_value_listenable_builder.dart';
+import 'package:my_test_app/Functions/Preferences/model_theme.dart';
+import 'package:provider/provider.dart';
 
 Map<String, bool> summaryDataFilter = {};
 
@@ -25,64 +27,64 @@ class _SummaryPage extends State<SummaryPage>{
   }
   @override
   Widget build(BuildContext context) {
-    
-  return MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Scaffold(
-      endDrawer: Drawer(
-        child: ListView(
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
-          padding: EdgeInsets.zero,
-          children: [
-            Material(
-              color: LightColors.kDarkBlue,
-              child: InkWell(
-                child: Container(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).padding.top,
-                    bottom: 24,
-                    ),
-                  child: const Column(
-                    children: [
-                      SizedBox(height: 12,),
-                      Text(
-                        'Summary Filter',
-                        style: TextStyle(
-                            fontSize: 28,
-                            color: Colors.white
+    return Consumer<ModelTheme>(
+      builder: (context, ModelTheme themeNotifier, child) {
+        return Scaffold(
+          endDrawer: Drawer(
+            child: ListView(
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              padding: EdgeInsets.zero,
+              children: [
+                Material(
+                  color: LightColors.kDarkBlue,
+                  child: InkWell(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).padding.top,
+                        bottom: 24,
                         ),
+                      child: const Column(
+                        children: [
+                          SizedBox(height: 12,),
+                          Text(
+                            'Summary Filter',
+                            style: TextStyle(
+                                fontSize: 28,
+                                color: Colors.white
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  )
                 ),
-              )
+                CupertinoSwitchExample(titleKey: 'All', switchVal: widget.allItemVisible, enabled: ValueNotifier(false), notifySwitch: notifySwitch,),
+                for (int i = 0; i < widget.itemVisibilities.length; i++)
+                  CupertinoSwitchExample(titleKey: widget.summaryData.keys.toList()[i], switchVal: widget.itemVisibilities[i], enabled: widget.allItemVisible,),
+                ],
+              ),
             ),
-            CupertinoSwitchExample(titleKey: 'All', switchVal: widget.allItemVisible, enabled: ValueNotifier(false), notifySwitch: notifySwitch,),
-            for (int i = 0; i < widget.itemVisibilities.length; i++)
-              CupertinoSwitchExample(titleKey: widget.summaryData.keys.toList()[i], switchVal: widget.itemVisibilities[i], enabled: widget.allItemVisible,),
-            ],
-          ),
-        ),
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_rounded),
-            onPressed: () {Navigator.pop(context);},
-          ),
-          title: const Text(
-            'Summary',
-            style: TextStyle(
-              color: LightColors.kDarkBlue,
-              fontSize: 25,
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                onPressed: () {Navigator.pop(context);},
+              ),
+              title: Text(
+                'Summary',
+                style: TextStyle(
+                  color: themeNotifier.isDark ? LightColors.kDarkYellow : LightColors.kDarkBlue,
+                  fontSize: 25,
+                ),
+              ),
+              backgroundColor: themeNotifier.isDark ? DarkColors.kDarkerGreen : LightColors.kDarkYellow,
             ),
-          ),
-          backgroundColor: LightColors.kDarkYellow,
-        ),
-        body: ListsWithCards(
-          summaryData: widget.summaryData, 
-          itemVisibility: widget.itemVisibilities,
-          allVisible: widget.allItemVisible,
-        ),
-      ),
+            body: ListsWithCards(
+              summaryData: widget.summaryData, 
+              itemVisibility: widget.itemVisibilities,
+              allVisible: widget.allItemVisible,
+            ),
+          );
+      }
     );
   }
 }
@@ -133,39 +135,43 @@ class CardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(10.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      color: Colors.grey[200],
-      shadowColor: LightColors.kLightYellow2,
-      elevation: 5,
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              titleData,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
+    return Consumer<ModelTheme>(
+      builder: (context, ModelTheme themeNotifier, child) {
+        return Card(
+          margin: const EdgeInsets.all(10.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          color: themeNotifier.isDark ? DarkColors.kDarkGreen : Colors.grey[200],
+          shadowColor: LightColors.kLightYellow2,
+          elevation: 5,
+          child: Column(
+            children: [
+              ListTile(
+                title: Text(
+                  titleData,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
-            ),
+              const Divider(),
+              ListView.builder(
+                itemCount: listData.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(listData[index]),
+                  );
+                },
+              ),
+            ],
           ),
-          const Divider(),
-          ListView.builder(
-            itemCount: listData.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(listData[index]),
-              );
-            },
-          ),
-        ],
-      ),
-    );
+        );
+      }
+    ); 
   }
 }
 

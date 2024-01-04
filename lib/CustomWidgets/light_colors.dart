@@ -17,16 +17,16 @@ class LightColors  {
 }
 
 class DarkColors {
-  static const Color kDarkYellow = Color(0xFFF9BE7C);
-  static const Color kDarkYellow2 = Color(0xFFE3A755);
+  static const Color kDarkerYellow = Color.fromRGBO(166, 73, 66, 1);
+  static const Color kDarkYellow2 = Color.fromRGBO(255, 120, 68, 1);
   static const Color kLightYellow = Color(0xFFFFF9EC);
   static const Color kPalePink = Color(0xFFFED4D6);
 
-  static const Color kDarkRed = Color(0xFF8E2F38);
+  static const Color kDarkRed = Color.fromRGBO(83, 53, 74, 1);
   static const Color kDarkLavender = Color(0xFF30445A);
-  static const Color kDarkBlue = Color(0xFF6488E4);
-  static const Color kDarkGreen = Color(0xFF1B2922);
-  static const Color kDarkerGreen = Color(0xFF0F1D18);
+  static const Color kDarkBlue = Color.fromRGBO(27, 31, 58, 1);
+  static const Color kDarkGreen = Color.fromRGBO(51, 63, 68, 1);
+  static const Color kDarkerGreen = Color.fromRGBO(27, 29, 34, 1);
 
   static const Color kDarkerBlue = Color(0xFF081A2E);
   static const Color kDarkPurpleBlue = Color.fromARGB(255, 41, 11, 94);

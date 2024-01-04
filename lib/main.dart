@@ -19,13 +19,24 @@ class MyApp extends StatelessWidget {
       child: Consumer<ModelTheme>(
         builder: (context, ModelTheme themeNotifier, child) {
           return MaterialApp(
-            theme: themeNotifier.isDark? 
-              ThemeData(
-                brightness: Brightness.dark,
-              )
-              : ThemeData(
-                brightness: Brightness.light,
+            theme: ThemeData (
+              // useMaterial3: true,
+              // Define the default brightness and colors.
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.purple,
+                // ···
+                brightness: themeNotifier.isDark ? Brightness.dark : Brightness.light,
               ),
+
+              // Define the default `TextTheme`. Use this to specify the default
+              // text styling for headlines, titles, bodies of text, and more.
+              // textTheme: const TextTheme(
+              //   displayLarge: TextStyle(
+              //     fontSize: 72,
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              // ),
+            ),
             home: const WelcomeScreen(),
           );
         }

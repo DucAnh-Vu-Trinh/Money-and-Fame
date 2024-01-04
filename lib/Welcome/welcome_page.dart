@@ -119,7 +119,7 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage()),
+                    MaterialPageRoute(builder: (context) =>const MyHomePage()),
                   );
                 },
                 child: const Text('Create New',

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:excel/excel.dart';
+import 'package:provider/provider.dart';
+
 import 'package:my_test_app/Functions/handle_excel.dart';
 import 'package:my_test_app/Pages/second_page.dart';
 import 'package:my_test_app/CustomWidgets/light_colors.dart';
-import 'package:excel/excel.dart';
+import 'package:my_test_app/Functions/Preferences/model_theme.dart';
+import 'package:my_test_app/CustomWidgets/back_button.dart';
 
 // ignore: must_be_immutable
 class DynamicItem extends StatelessWidget {
@@ -165,74 +169,59 @@ class _MyHomePageState extends State<MyHomePage> {
       icon: const Icon(Icons.create),
     );
       
-    return MaterialApp(
-      theme: ThemeData (
-        useMaterial3: true,
-        // Define the default brightness and colors.
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.purple,
-          // ···
-          brightness: Brightness.light,
-        ),
-
-        // Define the default `TextTheme`. Use this to specify the default
-        // text styling for headlines, titles, bodies of text, and more.
-        textTheme: const TextTheme(
-          displayLarge: TextStyle(
-            fontSize: 72,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('TienTaiDanhVong',
-            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w700, color: LightColors.kDarkYellow),),
-          backgroundColor: LightColors.kRed,
-          surfaceTintColor: LightColors.kDarkYellow,
-          actions: [
-            IconButton(
-              onPressed: changeScreen,
-              icon: const Icon(Icons.drive_file_move_outline),
-              iconSize: 40,
-              highlightColor: const Color.fromARGB(255, 249, 202, 61),
-            ),
-          ],
-        ),
-        body: Container(
-          margin: const EdgeInsets.all(10.0),
-          child: Column(
-            children: <Widget>[
-              data.isEmpty ? dynamicTextField : result,
-              data.isEmpty ? submitBtn : createExcelBtn,
+    return Consumer<ModelTheme>(
+      builder: (context, ModelTheme themeNotifier, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('TienTaiDanhVong',
+              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w700, color: LightColors.kDarkYellow),),
+            backgroundColor: LightColors.kRed,
+            surfaceTintColor: LightColors.kDarkYellow,
+            leading: const MyBackButton(heroTag: 'backButtonFirstPage'),
+            actions: [
+              IconButton(
+                onPressed: changeScreen,
+                icon: const Icon(Icons.drive_file_move_outline),
+                iconSize: 40,
+                highlightColor: const Color.fromARGB(255, 249, 202, 61),
+              ),
             ],
           ),
-        ),
-        floatingActionButton: Wrap(
-          direction: Axis.vertical, //use vertical to show  on vertical axis
-          children: <Widget>[
-            Container( 
-              margin:const EdgeInsets.all(10),
-              child: FloatingActionButton(
-                onPressed: addDynamic,
-                child: floatingIcon,
-              )
+          body: Container(
+            margin: const EdgeInsets.all(10.0),
+            child: Column(
+              children: <Widget>[
+                data.isEmpty ? dynamicTextField : result,
+                data.isEmpty ? submitBtn : createExcelBtn,
+              ],
             ),
-            
-            Opacity(
-              opacity: removeIconOpacity,
-              child: Container( 
-                margin: const EdgeInsets.all(10),
+          ),
+          floatingActionButton: Wrap(
+            direction: Axis.vertical, //use vertical to show  on vertical axis
+            children: <Widget>[
+              Container( 
+                margin:const EdgeInsets.all(10),
                 child: FloatingActionButton(
-                  onPressed: removeDynamic,
-                  backgroundColor: Colors.deepPurpleAccent,
-                  child: const Icon(Icons.remove),
-                ),
+                  onPressed: addDynamic,
+                  child: floatingIcon,
+                )
               ),
-            )
-          ]
-        ) 
-      ),
+              
+              Opacity(
+                opacity: removeIconOpacity,
+                child: Container( 
+                  margin: const EdgeInsets.all(10),
+                  child: FloatingActionButton(
+                    onPressed: removeDynamic,
+                    backgroundColor: Colors.deepPurpleAccent,
+                    child: const Icon(Icons.remove),
+                  ),
+                ),
+              )
+            ]
+          ) 
+        );
+      }
     );
   }
 }

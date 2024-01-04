@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_test_app/CustomWidgets/light_colors.dart';
 import 'package:my_test_app/CustomWidgets/my_text_field.dart';
+import 'package:my_test_app/Functions/Preferences/model_theme.dart';
+import 'package:provider/provider.dart';
 
 class MyCustomDateForm extends StatelessWidget {
   final TextEditingController myControllerDate;
@@ -42,13 +44,17 @@ class MyCustomDateForm extends StatelessWidget {
       Icons.keyboard_arrow_down,
       color: Colors.black54,
     );
-    return 
-      MyTextField(
-        label: 'Date',
-        icon: downwardIcon,
-        controller: myControllerDate,
-        readOnly: true,
-        onTap: () => onTapDate(context: context),
+    return Consumer<ModelTheme>(
+      builder: (context, ModelTheme themeNotifier, child) {
+        return MyTextField(
+          themeNotifier: themeNotifier,
+          label: 'Date',
+          icon: downwardIcon,
+          controller: myControllerDate,
+          readOnly: true,
+          onTap: () => onTapDate(context: context),
+        );
+      }
     );
   }
 }

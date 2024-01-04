@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:excel/excel.dart';
+import 'package:provider/provider.dart';
 
 import 'package:my_test_app/CustomWidgets/alert_dialog.dart';
 import 'package:my_test_app/CustomWidgets/date_form.dart';
@@ -11,6 +12,8 @@ import 'package:my_test_app/CustomWidgets/my_text_field.dart';
 import 'package:my_test_app/Functions/handle_excel.dart';
 import 'package:my_test_app/Pages/summary_page.dart';
 import 'package:my_test_app/Functions/summary_calculation.dart';
+import 'package:my_test_app/Functions/Preferences/model_theme.dart';
+
 // import 'package:intl/date_symbol_data_local.dart';
 
 class GradientText extends StatelessWidget {
@@ -107,7 +110,6 @@ class CreateNewTaskPage extends StatelessWidget {
       content: 'Delete the Last Row?', 
       context: context,
       yesOnPress: () {
-        print(maxRow);
         excel!.tables[chooseSheet]!.removeRow(maxRow - 1);
         Navigator.pop(context);
         }
@@ -148,278 +150,293 @@ class CreateNewTaskPage extends StatelessWidget {
     // Generate summary data for summary page
     Map<String, List<String>> summaryData = summary(excel!, myListPplName, choosenSheetName);
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            TopContainer(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
-              width: width,
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Consumer<ModelTheme>(
+      builder: (context, ModelTheme themeNotifier, child) {
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: SafeArea(
+            child: Column(
+              children: <Widget>[
+                TopContainer(
+                  themeNotifier: themeNotifier,
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
+                  width: width,
+                  child: Column(
                     children: <Widget>[
-                      const MyBackButton(),
-                    
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        IconButton(
-                        onPressed: () async {
-                          var myExcelFile = await pickFile();
-                          if (myExcelFile.item2 == null){
-                            return;
-                          }
-                          names = myExcelFile.item1;
-                          excel = myExcelFile.item2;
-                        },
-                        icon: const Icon(Icons.drive_file_move_outline),
-                        tooltip: 'Different Excel File',
-                        iconSize: 35,
-                        highlightColor: const Color.fromARGB(255, 249, 202, 61),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SummaryPage(summaryData: summaryData)),
-                           );
-                        },
-                        iconSize: 32,
-                        icon: const Icon(Icons.summarize_outlined),
-                        tooltip: 'Summary Page',
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          const MyBackButton(heroTag: 'backButtonSecondPage',),
+                        
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            IconButton(
+                            onPressed: () async {
+                              var myExcelFile = await pickFile();
+                              if (myExcelFile.item2 == null){
+                                return;
+                              }
+                              names = myExcelFile.item1;
+                              excel = myExcelFile.item2;
+                            },
+                            icon: Icon(
+                              Icons.drive_file_move_outline,
+                              color: themeNotifier.isDark ? Colors.grey : Colors.white,
+                            ),
+                            tooltip: 'Different Excel File',
+                            iconSize: 35,
+                            highlightColor: const Color.fromARGB(255, 249, 202, 61),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => SummaryPage(summaryData: summaryData)),
+                              );
+                            },
+                            iconSize: 32,
+                            icon: Icon(
+                              Icons.summarize_outlined,
+                              color: themeNotifier.isDark ? Colors.grey : Colors.white,
+                            ),
+                            tooltip: 'Summary Page',
+                            )
+                          ],
                         )
-                      ],
-                    )
-                    ]
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Create new budget',
-                        style: TextStyle(
-                            fontSize: 30.0, fontWeight: FontWeight.w700),
+                        ]
                       ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Create new budget',
+                            style: TextStyle(
+                                fontSize: 30.0, fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Container(
+                        child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          MyTextField(
+                            label: 'Title',
+                            controller: myControllerTitle,
+                            textInputAction: TextInputAction.next,
+                            themeNotifier: themeNotifier,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Expanded(
+                                child: MyCustomDateForm(myControllerDate: myControllerDate)
+                              ),
+                              const CircleAvatar(
+                                radius: 25.0,
+                                backgroundColor: LightColors.kGreen,
+                                child: Icon(
+                                  Icons.calendar_today,
+                                  size: 20.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ))
                     ],
                   ),
-                  const SizedBox(height: 20),
-                  Container(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
                     children: <Widget>[
-                      MyTextField(
-                        label: 'Title',
-                        controller: myControllerTitle,
-                        textInputAction: TextInputAction.next,
-                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Expanded(
-                            child: MyCustomDateForm(myControllerDate: myControllerDate)
-                          ),
-                          const CircleAvatar(
-                            radius: 25.0,
-                            backgroundColor: LightColors.kGreen,
-                            child: Icon(
-                              Icons.calendar_today,
-                              size: 20.0,
-                              color: Colors.white,
+                              child: MyTextFieldPop(
+                                themeNotifier: themeNotifier,
+                                controller: myController1,
+                                label: 'Who Gain',
+                                icon: downwardIcon,
+                                items: myListPplName,
+                                readOnly: true,
+                              )),
+                          const SizedBox(width: 40),
+                          Expanded(
+                            child: MyTextFieldPop(
+                              themeNotifier: themeNotifier,
+                              controller: myController2,
+                              label: 'Who Lost',
+                              icon: downwardIcon,
+                              items: myListPplName,
+                              readOnly: true,
                             ),
                           ),
                         ],
-                      )
-                    ],
-                  ))
-                ],
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Expanded(
-                          child: MyTextFieldPop(
-                            controller: myController1,
-                            label: 'Who Gain',
-                            icon: downwardIcon,
-                            items: myListPplName,
-                            readOnly: true,
-                          )),
-                      const SizedBox(width: 40),
-                      Expanded(
-                        child: MyTextFieldPop(
-                          controller: myController2,
-                          label: 'Who Lost',
-                          icon: downwardIcon,
-                          items: myListPplName,
-                          readOnly: true,
-                        ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  MyTextField(
-                    textInputType: TextInputType.text,
-                    // textInputType: const TextInputType.numberWithOptions(decimal: true),
-                    controller: myController3,
-                    label: 'Amount',
-                    minLines: 3,
-                    maxLines: 3,
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Category',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.black54,
-                          ),
-                        ),
-                        Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.start,
-                          //direction: Axis.vertical,
-                          alignment: WrapAlignment.start,
-                          verticalDirection: VerticalDirection.down,
-                          runSpacing: 0,
-                          //textDirection: TextDirection.rtl,
-                          spacing: 10.0,
+                      const SizedBox(height: 20),
+                      MyTextField(
+                        textInputType: TextInputType.text,
+                        themeNotifier: themeNotifier,
+                        // textInputType: const TextInputType.numberWithOptions(decimal: true),
+                        controller: myController3,
+                        label: 'Amount',
+                        minLines: 3,
+                        maxLines: 3,
+                      ),
+                      const SizedBox(height: 20),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Chip(
-                              label: Text("Notes"),
-                              backgroundColor: LightColors.kRed,
-                              labelStyle: TextStyle(color: Colors.white),
+                            Text(
+                              'Category',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: themeNotifier.isDark ? Colors.white : Colors.black54,
+                              ),
                             ),
-                            // Chip(
-                            //   label: Text("MEDICAL APP"),
-                            // ),
-                            // Chip(
-                            //   label: Text("RENT APP"),
-                            // ),
-                            // Chip(
-                            //   label: Text("NOTES"),
-                            // ),
-                            // Chip(
-                            //   label: Text("GAMING PLATFORM APP"),
-                            // ),
+                            const Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              //direction: Axis.vertical,
+                              alignment: WrapAlignment.start,
+                              verticalDirection: VerticalDirection.down,
+                              runSpacing: 0,
+                              //textDirection: TextDirection.rtl,
+                              spacing: 10.0,
+                              children: <Widget>[
+                                Chip(
+                                  label: Text("Notes"),
+                                  backgroundColor: LightColors.kRed,
+                                  labelStyle: TextStyle(color: Colors.white),
+                                ),
+                                // Chip(
+                                //   label: Text("MEDICAL APP"),
+                                // ),
+                                // Chip(
+                                //   label: Text("RENT APP"),
+                                // ),
+                                // Chip(
+                                //   label: Text("NOTES"),
+                                // ),
+                                // Chip(
+                                //   label: Text("GAMING PLATFORM APP"),
+                                // ),
+                              ],
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )),
-            FloatingActionButton.extended(
-              backgroundColor: LightColors.kGreen,
-              label: const GradientText(
-                'Update Excel',
-                style: TextStyle(
-                  color: Colors.white,
-                  // fontWeight: FontWeight.w700,
-                  fontSize: 12,
-                  ),
-                gradient: LinearGradient(
-                  colors:
-                    [LightColors.kLightYellow,
-                    LightColors.kLightYellow,
-                    ],
-                ),
-              ),
-              icon: const Icon(Icons.security_update_outlined),
-              onPressed: () => updateExcel(excel!, fileName)
-            ),
-            Container(
-              height: 80,
-              width: width,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-                    width: width - 40,
-                    decoration: BoxDecoration(
-                      color: LightColors.kBlue,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: SizedBox(
-                      height: double.infinity,
-                      width: 400,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Expanded(
-                            flex: 2,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                // Customize appearance as needed, e.g.:
-                                backgroundColor: LightColors.kBlue,
-                                side: const BorderSide(width: 3, color: LightColors.kRed),
-                                elevation: 3,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                              ),
-                              onPressed: () => deleteEntries(choosenSheetName, context), // Replace with your desired action
-                              child: const Text(
-                                'Delete Entries',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 7,),
-                          Expanded(
-                            flex: 2,
-                            child: ElevatedButton (
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: LightColors.kBlue, //background color of button
-                                side: const BorderSide(width: 3, color:LightColors.kDarkYellow), //border width and color
-                                elevation: 3, //elevation of button
-                                shape: RoundedRectangleBorder( //to set border radius to button
-                                  borderRadius: BorderRadius.circular(30)
-                                  ),
-                                  // padding: EdgeInsets.all(20) //content padding inside button
-                              ),
-                              onPressed: () => addEntries(myListNameStr, choosenSheetName, context),
-                              child: const Text(
-                                'Add Entries',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18),
-                              ),
-                            ),
-                          ),
-                        ],
                       )
+                    ],
+                  ),
+                )),
+                FloatingActionButton.extended(
+                  backgroundColor: LightColors.kGreen,
+                  label: const GradientText(
+                    'Update Excel',
+                    style: TextStyle(
+                      color: Colors.white,
+                      // fontWeight: FontWeight.w700,
+                      fontSize: 12,
+                      ),
+                    gradient: LinearGradient(
+                      colors:
+                        [LightColors.kLightYellow,
+                        LightColors.kLightYellow,
+                        ],
                     ),
                   ),
-                ],
-              ),
+                  icon: const Icon(Icons.security_update_outlined),
+                  onPressed: () => updateExcel(excel!, fileName)
+                ),
+                Container(
+                  height: 80,
+                  width: width,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                        width: width - 40,
+                        decoration: BoxDecoration(
+                          color: themeNotifier.isDark ? DarkColors.kDarkBlue : LightColors.kBlue,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: SizedBox(
+                          height: double.infinity,
+                          width: 400,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Expanded(
+                                flex: 2,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    // Customize appearance as needed, e.g.:
+                                    backgroundColor: themeNotifier.isDark ? DarkColors.kDarkBlue : LightColors.kBlue,
+                                    side: BorderSide(width: 3, color: themeNotifier.isDark ? DarkColors.kDarkRed : LightColors.kRed),
+                                    elevation: 3,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                  ),
+                                  onPressed: () => deleteEntries(choosenSheetName, context), // Replace with your desired action
+                                  child: const Text(
+                                    'Delete Entries',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 7,),
+                              Expanded(
+                                flex: 2,
+                                child: ElevatedButton (
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: themeNotifier.isDark ? DarkColors.kDarkBlue : LightColors.kBlue, //background color of button
+                                    side: BorderSide(width: 3, color:themeNotifier.isDark ? DarkColors.kDarkYellow2 : LightColors.kDarkYellow), //border width and color
+                                    elevation: 3, //elevation of button
+                                    shape: RoundedRectangleBorder( //to set border radius to button
+                                      borderRadius: BorderRadius.circular(30)
+                                      ),
+                                      // padding: EdgeInsets.all(20) //content padding inside button
+                                  ),
+                                  onPressed: () => addEntries(myListNameStr, choosenSheetName, context),
+                                  child: const Text(
+                                    'Add Entries',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }
     );
   }
 }
