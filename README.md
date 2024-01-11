@@ -22,3 +22,6 @@ There are 3 pages (screens) in the app:
 ### As app user
 The welcome screen will appear when first oppening the app.
 ## License
+MIT License
+
+Copyright (c) 2024 Duc Anh Vu Trinh
