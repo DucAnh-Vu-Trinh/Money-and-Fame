@@ -14,7 +14,7 @@ Create or go to your project folder. Paste `git clone https://github.com/DucAnh-
 
 ## Usage
 ### As developer
-The lib/CustomWidgets folder has all the major Widgets in the app, aiming to make it easier for you to reuse the code.<br>
+:handshake: The lib/CustomWidgets folder has all the major Widgets in the app, aiming to make it easier for you to reuse the code.<br>
 The lib/Functions contains some main functions that are used in the app, especially the summary_calculation file that has functions used in the summary_page.<br>
 The app uses the provider and shared_preferences packages to handle switching between light and dark theme. Look here for more information: [Medium Page](https://medium.flutterdevs.com/implement-dark-mode-in-flutter-using-provider-158925112bf9).<br>
 There are 3 pages (screens) in the app:
