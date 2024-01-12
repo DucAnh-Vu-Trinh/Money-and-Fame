@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_test_app/Pages/second_page.dart';
-import 'package:my_test_app/Welcome/items.dart';
+import 'package:my_test_app/Pages/Welcome/items.dart';
 import 'package:my_test_app/CustomWidgets/light_colors.dart';
 import 'package:my_test_app/Pages/first_page.dart';
 import 'package:my_test_app/Functions/handle_excel.dart';

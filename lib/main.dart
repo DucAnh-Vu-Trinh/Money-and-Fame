@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:my_test_app/Welcome/welcome_page.dart';
+import 'package:my_test_app/Pages/Welcome/welcome_page.dart';
 import 'package:my_test_app/Functions/Preferences/model_theme.dart';
 
 void main() {
