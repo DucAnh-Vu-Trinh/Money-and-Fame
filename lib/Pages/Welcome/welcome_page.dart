@@ -130,7 +130,14 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 5,),
+              const Text('or',
+                style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: LightColors.kRed,),
+              ),
+              const SizedBox(height: 5,),
               InkWell(
                 onTap: () async {
                   var myExcelFile = await pickFile();

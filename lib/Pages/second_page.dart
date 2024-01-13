@@ -392,14 +392,17 @@ class CreateNewTaskPage extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () => deleteEntries(choosenSheetName, context), // Replace with your desired action
-                                  child: const Text(
-                                    'Delete Entries',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 18,
+                                  child: const FittedBox(
+                                    fit: BoxFit.fill,
+                                    child: Text(
+                                      'Delete Entries',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18,
+                                      ),
                                     ),
-                                  ),
+                                  )
                                 ),
                               ),
                               const SizedBox(width: 7,),
@@ -416,13 +419,16 @@ class CreateNewTaskPage extends StatelessWidget {
                                       // padding: EdgeInsets.all(20) //content padding inside button
                                   ),
                                   onPressed: () => addEntries(myListNameStr, choosenSheetName, context),
-                                  child: const Text(
-                                    'Add Entries',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 18),
-                                  ),
+                                  child: const FittedBox(
+                                    fit: BoxFit.fill,
+                                    child: Text(
+                                      'Add Entries',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18),
+                                    ),
+                                  )
                                 ),
                               ),
                             ],

@@ -2,7 +2,7 @@ List items = [
   {
     "header": "Acknowledgement",
     "description":
-        "Written by Duc Anh Vu Trinh (unianthony). Inspired by Linh Khanh Tran (Adelie)",
+        "Written by Duc Anh Vu Trinh (Anthony). Inspired by Linh Khanh Tran (Adelie)",
     "image": "assets/images/personal_info.png"
   },
   {
