@@ -102,29 +102,30 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Widget result =  Flexible(
-        flex: 1,
-        child: Card(
-          elevation: 60,
-          shadowColor: const Color.fromARGB(255, 123, 66, 245),
-          child: ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (_, index) {
-              return Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.only(left: 10.0),
-                      child: Text("${index + 1} : ${data[index]}"),
-                    ),
-                    const Divider()
-                  ],
-                ),
-              );
-            },
-          ),
-        ));
+      flex: 1,
+      child: Card(
+        elevation: 60,
+        shadowColor: const Color.fromARGB(255, 123, 66, 245),
+        child: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (_, index) {
+            return Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    margin: const EdgeInsets.only(left: 10.0),
+                    child: Text("${index + 1} : ${data[index]}"),
+                  ),
+                  const Divider()
+                ],
+              ),
+            );
+          },
+        ),
+      )
+    );
 
     Widget dynamicTextField = Flexible(
       flex: 2,
@@ -161,7 +162,15 @@ class _MyHomePageState extends State<MyHomePage> {
       );
 
     Widget createExcelBtn = ElevatedButton.icon(
-      onPressed: () => createExcel(data),
+      onPressed: () {
+        createExcel(data);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CreateNewTaskPage(names: names, excel: excelFile, fileName: fileName)
+          ),
+        );
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromARGB(255, 34, 133, 41),
         shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(10.0))),
