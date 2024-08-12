@@ -37,6 +37,10 @@ class MyApp extends StatelessWidget {
               //   ),
               // ),
             ),
+            builder: (context, child) {
+              themeNotifier.platform = Theme.of(context).platform;
+              return child!;
+            },
             home: const WelcomeScreen(),
           );
         }

@@ -48,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     String? fileName = myExcelFile.item3;
 
     if (excelFile == null) return;
+    // ignore: use_build_context_synchronously
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -162,12 +163,16 @@ class _MyHomePageState extends State<MyHomePage> {
       );
 
     Widget createExcelBtn = ElevatedButton.icon(
-      onPressed: () {
-        createExcel(data);
+      onPressed: () async {
+        var dataTuple = await createExcel(data, saveFile: false);
+        var names = dataTuple!.item1;
+        var excelFile = dataTuple.item2;
+        
+        // ignore: use_build_context_synchronously
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CreateNewTaskPage(names: names, excel: excelFile, fileName: fileName)
+            builder: (context) => CreateNewTaskPage(names: names, excel: excelFile)
           ),
         );
       },

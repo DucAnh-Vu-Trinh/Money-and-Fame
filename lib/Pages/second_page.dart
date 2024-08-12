@@ -44,7 +44,7 @@ class CreateNewTaskPage extends StatelessWidget {
   late Map<String, List<List<CellValue>>> names;
   late Excel? excel;
   late String? fileName;
-  CreateNewTaskPage ({super.key, required this.names, required this.excel, required this.fileName});
+  CreateNewTaskPage ({super.key, required this.names, required this.excel, this.fileName = 'MoneyandFame'});
   
   final myController1 = TextEditingController();
   final myController2 = TextEditingController();
@@ -148,10 +148,10 @@ class CreateNewTaskPage extends StatelessWidget {
       color: Colors.black54,
     );
     // Generate summary data for summary page
-    Map<String, List<String>> summaryData = summary(excel!, myListPplName, choosenSheetName);
 
     return Consumer<ModelTheme>(
       builder: (context, ModelTheme themeNotifier, child) {
+  
         return Scaffold(
           resizeToAvoidBottomInset: false,
           body: SafeArea(
@@ -190,6 +190,7 @@ class CreateNewTaskPage extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {
+                              Map<String, List<String>> summaryData = summary(excel!, myListPplName, choosenSheetName);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => SummaryPage(summaryData: summaryData)),
@@ -357,7 +358,9 @@ class CreateNewTaskPage extends StatelessWidget {
                     ),
                   ),
                   icon: const Icon(Icons.security_update_outlined),
-                  onPressed: () => updateExcel(excel!, fileName)
+                  onPressed: () async {
+                    await promptForFileNameAndSave(context, excel!, fileName!, themeNotifier.platform);
+                  }
                 ),
                 Container(
                   height: 80,
