@@ -3,19 +3,19 @@
 A Flutter project designed to help users effectively manage and monitor budgetary allocations. This application serves as a versatile financial companion, providing users with a user-friendly interface to track and analyze spending habits among housemates, couples, or individuals. I adopt **a lot of** codes and take inspiration from many sources to quickly build the app to serve my purpose and personal usage. I just put it here for everyone if they find the app useful :purple_heart:!
 
 <p float="left">
-  <img src="assets/images/welcome.jpg" width="33%" />
-  <img src="assets/images/createnew.jpg" width="33%" /> 
-  <img src="assets/images/revise.jpg" width="33%" />
+  <img src="assets/images/welcome.jpg" width="30%" />
+  <img src="assets/images/createnew.jpg" width="30%" /> 
+  <img src="assets/images/revise.jpg" width="30%" />
 </p>
 
 <p float="left">
-  <img src="assets/images/adddata.jpg" width="33%" />
-  <img src="assets/images/summary.jpg" width="33%" /> 
-  <img src="assets/images/button.jpg" width="33%" />
+  <img src="assets/images/adddata.jpg" width="30%" />
+  <img src="assets/images/summary.jpg" width="30%" /> 
+  <img src="assets/images/button.jpg" width="30%" />
 </p>
 
 <p float="left">
-  <img src="assets/images/morebutton.jpg" width="33%" />
+  <img src="assets/images/morebutton.jpg" width="30%" />
 </p>
 
 ## Getting Started
